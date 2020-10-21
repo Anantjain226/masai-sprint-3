@@ -6,6 +6,72 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div id= "displayRandom"> Display Random Image</div>
+    <div>
+        <input type="number" placeholder="Number of Images" id = "number">
+        <div id= "displayMutipleRandom"> Dsiplay Multiple Random Images</div>
+    </div>  
+    <div id= 'cont'></div>
+   
+    <script>
+
+        window.addEventListener('load', function(){
+            var displayRandom = document.getElementById('displayRandom')
+            displayRandom.addEventListener('click', single)
+
+            var displayMultipleRandom = document.getElementById('displayMutipleRandom')
+            displayMultipleRandom.addEventListener('click', multiple)
+        })
+
+
+        function single(){
+            var cont = document.getElementById('cont')
+            cont.textContent = "Loading..."
+            console.log("1")
+            var xhr = new XMLHttpRequest()
+
+            xhr.open('GET', "https://dog.ceo/api/breeds/image/random")
+
+            xhr.send()
+
+            xhr.onload = function(){
+                var response = JSON.parse(this.response) 
+                console.log(response)
+                displayrandomImage(response)
+            }
+        }
+        
+        function displayrandomImage(res){
+            var cont = document.getElementById('cont')
+            cont.textContent = ""
+            var cont = document.getElementById('cont')
+
+            var image = document.createElement('img')
+            image.setAttribute('src', res.message)
+            image.setAttribute('style', 'height: 300px; width: 300px')
+            cont.append(image)
+        }
+
+        function multiple(){
+            var num = document.getElementById('number').value
+            var cont = document.getElementById('cont')
+
+            cont.textContent = "Loading..."
+            console.log("1")
+            var xhr = new XMLHttpRequest()
+
+            xhr.open('GET', "https://dog.ceo/api/breeds/image/random/" + num)
+
+            xhr.send()
+
+            xhr.onload = function(){
+                var response = JSON.parse(this.response) 
+                console.log(response)
+                
+            }
+        }
+
+        
+    </script>
 </body>
 </html>

@@ -20,10 +20,18 @@
         window.addEventListener('load', function(){
             var listAll = document.getElementById('listAll')
             listAll.addEventListener('click', listAllBreeds)
+
+            var random = document.getElementById('random')
+            random.addEventListener('click', randomImage)
+
+            var breed = document.getElementById('breed')
+            breed.addEventListener('click', byBreed)
         })
         
-
+        // --> LIST ALL <--
         function listAllBreeds(){
+            var cont = document.getElementById('cont')
+            cont.textContent = "Loading..."
             console.log("1")
             var xhr = new XMLHttpRequest()
 
@@ -39,12 +47,26 @@
 
         function displayList(res){
             var cont = document.getElementById('cont')
+            cont.textContent = ""
             console.log(res.message)
             for(var key in res.message){
                 var p = document.createElement('p')
                 p.textContent = key
                 cont.append(p)
             }
+        }
+
+        // --> Random Image <--
+        function randomImage(){
+            var cont = document.getElementById('cont')
+            cont.textContent = "Loading..."
+            window.location.assign('byImage.html')
+        }
+
+        function byBreed(){
+            var cont = document.getElementById('cont')
+            cont.textContent = "Loading..."
+            window.location.assign('byBreed.html')
         }
     </script>
     
