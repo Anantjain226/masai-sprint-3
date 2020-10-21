@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="api.css">
+</head>
+<body>
+    <div id="nav">
+        <div style = "float: left; padding: 10px" id= "listAll">List All Breads</div>
+        <div  style = "float: left; padding: 10px" id= "random">Random Image</div>
+        <div  style = "float: left; padding: 10px" id= "breed">Show By Breed</div>
+        <div  style = "float: left; padding: 10px" id= "subBreed">Show By Sub-Breed</div>
+        <div  style = "padding: 10px" id= "browse">Browse Breed-List</div>
+    </div>
+
+    <div id = 'cont'></div>
+    <script>
+        window.addEventListener('load', function(){
+            var listAll = document.getElementById('listAll')
+            listAll.addEventListener('click', listAllBreeds)
+        })
+        
+
+        function listAllBreeds(){
+            console.log("1")
+            var xhr = new XMLHttpRequest()
+
+            xhr.open('GET', "https://dog.ceo/api/breeds/list/all")
+
+            xhr.send()
+
+            xhr.onload = function(){
+                var response = JSON.parse(this.response) 
+                displayList(response)
+            }
+        }
+
+        function displayList(res){
+            var cont = document.getElementById('cont')
+            console.log(res.message)
+            for(var key in res.message){
+                var p = document.createElement('p')
+                p.textContent = key
+                cont.append(p)
+            }
+        }
+    </script>
+    
+</body>
+</html>
