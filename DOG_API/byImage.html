@@ -54,8 +54,8 @@
 
         function multiple(){
             var num = document.getElementById('number').value
-            var cont = document.getElementById('cont')
 
+            var cont = document.getElementById('cont')
             cont.textContent = "Loading..."
             console.log("1")
             var xhr = new XMLHttpRequest()
@@ -67,10 +67,24 @@
             xhr.onload = function(){
                 var response = JSON.parse(this.response) 
                 console.log(response)
+                displayMultiple(response)
                 
             }
         }
 
+        function displayMultiple(res){
+            var arr = res.message
+            var cont = document.getElementById('cont')
+            cont.textContent = ""
+
+            for(var i= 0; i< arr.length; i++){
+                var image = document.createElement('img')
+                image.setAttribute('src', arr[i])
+                image.setAttribute('style', 'height: 300px; width: 300px; padding: 30px')
+                cont.append(image)
+            }
+
+        }
         
     </script>
 </body>

@@ -26,6 +26,9 @@
 
             var breed = document.getElementById('breed')
             breed.addEventListener('click', byBreed)
+
+            var subBreed = document.getElementById('subBreed')
+            subBreed.addEventListener('click', bySubBreed)
         })
         
         // --> LIST ALL <--
@@ -67,6 +70,12 @@
             var cont = document.getElementById('cont')
             cont.textContent = "Loading..."
             window.location.assign('byBreed.html')
+        }
+
+        function bySubBreed(){
+            var cont = document.getElementById('cont')
+            cont.textContent = "Loading..."
+            window.location.assign('bySubBreed.html')
         }
     </script>
     

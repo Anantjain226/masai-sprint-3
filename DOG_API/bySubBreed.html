@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select id="breed-selector">
+        <option value="australian">australian</option>
+        <option value="buhund">buhund</option>
+        <option value="bulldog">bulldog</option>
+        <option value="bullterrier">bullterrier</option>
+        <option value="cattledog">cattledog</option>
+        <option value="collie">collie</option>
+        <option value="corgi">corgi</option>
+        <option value="dane">dane</option>
+        <option value="deerhound">deerhound</option>
+        <option value="elkhound">elkhound</option>
+        <option value="finnish">finnish</option>
+        <option value="frise">frise</option>
+        <option value="greyhound">greyhound</option>
+        <option value="hound">hound</option>
+        <option value="mastiff">mastiff</option>
+        <option value="mountain">mountain</option>
+        <option value="ovcharka">ovcharka</option>
+        <option value="pinscher">pinscher</option>
+        <option value="pointer">pointer</option>
+        <option value="pomeranian">pomeranian</option>
+        <option value="poodle">poodle</option>
+        <option value="retriever">retriever</option>
+        <option value="ridgeback">ridgeback</option>
+        <option value="schnauzer">schnauzer</option>
+        <option value="setter">setter</option>
+        <option value="sheepdog">sheepdog</option>
+        <option value="spaniel">spaniel</option>
+        <option value="springer">springer</option>
+        <option value="terrier">terrier</option>
+        <option value="waterdog">waterdog</option>
+        <option value="wolfhound"> wolfhound</option>
+    </select>
+
+    <button id= "fetch">SHOW SUB-BREEDS</button>
+    <button id= "images">SHOW IMAGES !!</button>
+    <div id = "cont"></div>
+    <script>
+        window.addEventListener('load', function(){
+            var fetch = document.getElementById('fetch')
+            fetch.addEventListener('click', fetchData)
+
+            var images = document.getElementById('images')
+            images.addEventListener('click', showImages)
+        })
+
+        function fetchData(){
+            var breed = document.getElementById("breed-selector").value
+            console.log(breed)
+
+            var cont = document.getElementById('cont')
+            cont.textContent = "Loading..."
+            console.log("1")
+            var xhr = new XMLHttpRequest()
+
+            var url = "https://dog.ceo/api/breed/" + breed + "/list"
+            console.log(url)
+
+            xhr.open('GET', url)
+
+            xhr.send()
+
+            xhr.onload = function(){
+                var response = JSON.parse(this.response) 
+                console.log(response)
+                displaytText(response)
+            }
+        }
+
+        function displayText(res){
+            var arr = res.message
+            var cont = document.getElementById('cont')
+            cont.textContent = ""
+
+            for(var i= 0; i< arr.length; i++){
+                var p = document.createElement('p')
+                p.textContent = arr[i]
+                cont.append(p)
+            }
+
+        }
+    </script>
+</body>
+</html>
