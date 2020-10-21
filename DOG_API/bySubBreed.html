@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div id= "nav">
+    <div id= "nav; margin: 50px" >
         <select id="breed-selector">
             <option value="australian">australian</option>
             <option value="buhund">buhund</option>
@@ -100,6 +100,7 @@
             for(var i= 0; i< arr.length; i++){
                 var p = document.createElement('p')
                 p.textContent = arr[i]
+                p.setAttribute('style', 'border: 1px solid black; padding: 10px; margin-right: 830px')
                 cont.append(p)
             }
 

@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="api.css">
+    <!-- <link rel="stylesheet" href="api.css"> -->
 </head>
 <body>
-    <div id="nav">
-        <div style = "float: left; padding: 10px" id= "listAll">List All Breads</div>
-        <div  style = "float: left; padding: 10px" id= "random">Random Image</div>
-        <div  style = "float: left; padding: 10px" id= "breed">Show By Breed</div>
-        <div  style = "float: left; padding: 10px" id= "subBreed">Show By Sub-Breed</div>
-        <div  style = "padding: 10px" id= "browse">Browse Breed-List</div>
+    <div id="nav" style="margin-left: 200px; border: 1px solid black; margin-right: 220px">
+        <div style = "float: left; padding: 30px; cursor: pointer;" id= "listAll">List All Breads</div>
+        <div  style = "float: left; padding: 30px; cursor: pointer" id= "random">Random Image</div>
+        <div  style = "float: left; padding: 30px; cursor: pointer" id= "breed">Show By Breed</div>
+        <div  style = "float: left; padding: 30px; cursor: pointer" id= "subBreed">Show By Sub-Breed</div>
+        <div id= "browse" style = "padding: 30px; cursor: pointer">Browse Breed-List</div>
     </div>
 
     <div id = 'cont'></div>
@@ -29,6 +29,9 @@
 
             var subBreed = document.getElementById('subBreed')
             subBreed.addEventListener('click', bySubBreed)
+
+            var browse = document.getElementById('browse')
+            browse.addEventListener('click', breedList)
         })
         
         // --> LIST ALL <--
@@ -55,6 +58,7 @@
             for(var key in res.message){
                 var p = document.createElement('p')
                 p.textContent = key
+                p.setAttribute('style', "margin-left: 200px; margin-right: 220px; border: 1px solid black; padding: 10px")
                 cont.append(p)
             }
         }
@@ -76,6 +80,12 @@
             var cont = document.getElementById('cont')
             cont.textContent = "Loading..."
             window.location.assign('bySubBreed.html')
+        }
+
+        function breedList(){
+            var cont = document.getElementById('cont')
+            cont.textContent = "Loading..."
+            window.location.assign('byBreedList.html')
         }
     </script>
     
